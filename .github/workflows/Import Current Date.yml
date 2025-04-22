@@ -1,0 +1,43 @@
+name: Anaplan Daily Import
+on:
+  schedule:
+    # Run every day at 6:30 PM UTC (12:00 AM IST)
+    - cron: '30 18 * * *'
+  workflow_dispatch:  # Allows manual triggering
+jobs:
+  run-anaplan-import:
+    runs-on: windows-latest  # Use Windows runner
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'  # Eclipse Temurin distribution
+          java-version: '17'       # Using Java 17
+      - name: Download and setup Anaplan Connect
+        run: |
+          # Create Anaplan Connect folder
+          New-Item -ItemType Directory -Path "anaplan-connect-4.3.1" -Force
+ 
+          # Download Anaplan Connect
+          Invoke-WebRequest -Uri "https://anaplanenablement.s3.amazonaws.com/Community/Anapedia/anaplan-connect-4.3.1.zip" -OutFile "anaplan-connect-4.3.1.zip"
+          # Extract to the Anaplan Connect folder
+          Expand-Archive -Path "anaplan-connect-4.3.1.zip" -DestinationPath "anaplan-connect-4.3.1"
+          # Debug: Show Anaplan Connect folder contents
+          Write-Host "Anaplan Connect folder contents:"
+          Get-ChildItem -Path "anaplan-connect-4.3.1" -Recurse
+        shell: pwsh
+      - name: Run Anaplan script
+        run: |
+          # Ensure script is executable
+          Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
+          # Run the PowerShell script
+          ./AnaplanDailyAction.ps1
+        shell: pwsh
+      - name: Upload logs as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: execution-logs
+          path: logs/
+          retention-days: 7
