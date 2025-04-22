@@ -2,11 +2,11 @@
 # This script runs an Anaplan action and logs the outcome
 # ------ Configuration ------
 # Anaplan credentials (Hardcoded for now)
-$ANAPLAN_USER = "jaiselvash.segar@relanto.ai"
-$ANAPLAN_PASSWORD = 'AP_#@Jai._14'
+$ANAPLAN_USER = "Krishna.Chaitanya@relanto.ai"
+$ANAPLAN_PASSWORD = 'Desai@2002'
 # Anaplan workspace, model, and action details
-$WORKSPACE_ID = "8a868cdc7bd6c9ae017be5b938c83112"
-$MODEL_ID = "6E767AD07F1345D9B3E3AF6925799C8A"
+$WORKSPACE_ID = "8a81b01078e1bbf5017938e82ab842a5"
+$MODEL_ID = "01B89DD889EB4637A76BF4A6AB1A26FE"
 $ACTION_NAME = "Import current date"
  
 # ------ Robust Path Finding ------
