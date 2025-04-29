@@ -3,7 +3,7 @@
 # ------ Configuration ------
 # Anaplan credentials (Hardcoded for now)
 $ANAPLAN_USER = "Krishna.Chaitanya@relanto.ai"
-$ANAPLAN_PASSWORD = 'Desai@2002'
+$ANAPLAN_PASSWORD = 'Darshin@2002'
 # Anaplan workspace, model, and action details
 $WORKSPACE_ID = "8a81b01078e1bbf5017938e82ab842a5"
 $MODEL_ID = "01B89DD889EB4637A76BF4A6AB1A26FE"
